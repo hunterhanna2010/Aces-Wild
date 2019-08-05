@@ -30,6 +30,7 @@ button {
 	font-family: 'Saira Stencil One', cursive;
 	color: white;
 	text-align: center;
+	text-transform: uppercase;
 	height: 50px;
 	width: 300px;
 	display: block;
@@ -56,6 +57,14 @@ h2 {
 	margin: 0 auto;
 	text-transform: uppercase;
 
+}
+
+h3 {
+	color: red;
+	font-size: 24px;
+	text-align: center;
+	margin: 0 auto;
+	text-transform: uppercase;
 }
 
 

@@ -1,116 +1,127 @@
-console.log('sanity');
 
-let API_URL = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
+
+
+/*--- constants ---*/
+const API_URL = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
+
+
+/*--- app's state ---*/
 let gameOver = false;
+let deck;
+let interval;
+
+/*--- cached element references ---*/
 let playerMessage = document.getElementById('player-message');
+let message = document.getElementById('game-status');
+//let pauseMessage = document.getElementById('pause-message');
+//let continueMessage = document.getElementById('continue-message');
 
 
+/*--- event listeners ---*/
 document.addEventListener('DOMContentLoaded', function() {
+	console.log('sanity');
+})
 
 //event listener for button on click
 document.getElementById('deal-cards').addEventListener('click', function(e) {
 	console.log('we are in game mode now');
+	startGame();
 })
 
+document.getElementById('restart-game').addEventListener('click', function(e) {
+	console.log('restarting');
+	continueGame();
+})
 
 //add event listener to keydown "z" and keydown "m"
 let playerZKey = window.addEventListener('keydown', checkKeyZ, false);
-	function checkKeyZ(key) {
-	if (key.keyCode == "90") {
-		playerMessage.textContent = 'Player Z has slapped the deck';
-	}
-}
+
 
 //add event listener to keydown "m"
 let playerMKey = window.addEventListener('keydown', checkKeyM, false);
-	function checkKeyM(key) {
-	if (key.keyCode == "77") {
-		playerMessage.textContent = 'Player M has slapped the deck';
-	}
-}
 
 
-//create a deck of cards
-class Deck {
-	constructor () {
-		this.deck = [];
-		this.dealt_cards = [];
-	}
 
-	generateDeck () {
-		
-		let card = (suit, value) => {
-			this.name = value + ' of ' + suit;
-			this.suit = suit;
-			this.value = value;
-
-			return {name:this.name, suit:this.suit, value:this.value};
-		}
-
-		let values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-		let suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
-
-		for(let s = 0; s < suits.length; s++) {
-
-			for(let v = 0; v < values.length; v++) {
-
-				this.deck.push(card(suits[s], values[v]));
-			}
-		}
-	}
-
-	printDeck () {
-		if (this.deck.length == 0) {
-			console.log('the deck has not been built');
-		} else {
-			for (let c = 0; c < this.deck.length; c++) {
-				console.log(this.deck[c]);
-			}
-		}
-	}
-
-	shuffle () {
-		let current_index = this.deck.length, temp_value, random_index;
-
-		while (0 != current_index) {
-			random_index = Math.floor((Math.random() * current_index));
-			current_index -= 1
-			temp_value = this.deck[current_index];
-			this.deck[current_index] = this.deck[random_index];
-			this.deck[random_index] = temp_value;
-		}
-	}
-
-	deal () {
-		let dealt_card = this.deck.shift();
-		this.dealt_card.push(dealt_card);
-		return dealt_card;
-	}
-
-	clear_deck () {
-		this.deck = [];
-	}
-}
-
-deck = new Deck();
-deck.generateDeck();
-deck.shuffle();
-deck.printDeck();
-console.log(deck.deal);
-});
-
+/*--- functions ---*/
 
 //startGame
 
+function checkKeyZ(key) {
+	if (key.keyCode == "90") {
+		playerMessage.textContent = 'Player Z has slapped the deck';
+		pauseGame();
+	}
+}
+
+function checkKeyM(key) {
+	if (key.keyCode == "77") {
+		playerMessage.textContent = 'Player M has slapped the deck';
+		pauseGame();
+		
+	}
+}
+initializeGame();
+//set up game to begin
+function initializeGame() {
+	deck = new Deck();
+	deck.generateDeck();
+	deck.shuffle();
+	console.log(deck);
+}
+
+//game is ready to start
+function startGame() {
+	deck.printDeck();
+	console.log(deck.deal);
+	//setting an interval for every second for a new card to deal
+	interval = setInterval(dealCard, 500);
+	//message.textContent = 'Game has started';
+}
+
+function dealCard() {
+	var card = deck.deal();
+	//if there are no more cards in the array, game is over
+	if (card === undefined) {
+		endGame();
+	}
+}
 
 //pauseGame
-
+function pauseGame() {
+	//cancelling the interval until start game is reclicked
+	clearInterval(interval);
+	//message.textContent = 'Game is Paused Now';
+	console.log('game is paused');
+}
 
 //continueGame
-
-
+//set up a boolean to true or false if start game is equal to true, otherwise continue game
+function continueGame() {
+	interval = setInterval(dealCard, 300);
+	dealCard;
+	//message.textContent = 'Game has entered 2nd Round';
+}
 
 //endGame
+function endGame() {
+	clearInterval(interval);
+	console.log('reached the end of the game');
+	gameOver = true;
+}	
+
+//resetGame
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
