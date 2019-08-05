@@ -1,0 +1,63 @@
+
+body {
+	text-align: center;
+  	background-size: 100vw 100%vh;
+	font-family: 'Saira Stencil One', cursive;
+}
+
+
+h1 {
+	text-align: center;
+	color: red;
+	font-size: 100px;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 10px;
+}
+
+p {
+	color: red;
+	font-size: 24px;
+	text-align: center;
+	margin-top: 5px;
+	margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    padding: 5px;
+}
+
+button {
+	font-family: 'Saira Stencil One', cursive;
+	color: white;
+	text-align: center;
+	height: 50px;
+	width: 300px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	justify-content: center;
+	background-color: green;
+	font-size: 20px;
+	font-weight: 600;
+	border-style: 10px solid black;
+}
+
+img {
+	padding: 10px;
+	margin: 0 auto;
+	height: 500px;
+	width: 400px;
+}
+
+h2 {
+	color: red;
+	font-size: 24px;
+	text-align: center;
+	margin: 0 auto;
+	text-transform: uppercase;
+
+}
+
+
+
+

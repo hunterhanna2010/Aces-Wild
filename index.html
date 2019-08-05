@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+	<title>Ace's Wild - a card game</title>
+</head>
+
+<body class="aces-wild">
+	<header>
+		<h1>aces wild</h1>
+		
+		<p>Aces Wild features two players, Player Z and Player M. The game starts and the cards flip continuously creating one stack of cards.
+			<br> Players watch for Aces. The first player to slap the stack with a keystroke of "Z" or "M" wins the round and all the cards. If a player slaps on a card that is not an Ace, that player loses the round and all the cards go to the other player. Rounds continue until one of the players holds all of the cards.<br> Then, we have a game winner!</p>
+	
+	</header>
+	<main>
+		<div class ="card-flip" id="card-area-container"></div>
+			<div class="deck" id="card-rendering">
+				
+				<button id="deal-cards" type="submit" 
+				place="deal">start game now!</button>
+					<div class="front" id="front">
+						<img id="dealer-cards" src="https://www.fillmurray.com/460/300">
+					</div>
+					<div class="back" id="back">
+						<img id="card-stack" src="https://www.stevensegallery.com/g/155/300">
+						<h2 id="player-message"></h2>
+					</div>
+			</div>
+		
+	</main>
+	
+
+
+
+
+
+
+</body>
+<script src="js/main.js" type="text/javascript"></script>
+</html>
