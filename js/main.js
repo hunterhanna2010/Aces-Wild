@@ -8,7 +8,10 @@ const API_URL = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
 /*--- app's state ---*/
 let gameOver = false;
 let deck;
+let card;
 let interval;
+let playerM = 0;
+let playerZ = 0;
 
 /*--- cached element references ---*/
 let playerMessage = document.getElementById('player-message');
@@ -20,26 +23,31 @@ let message = document.getElementById('game-status');
 /*--- event listeners ---*/
 document.addEventListener('DOMContentLoaded', function() {
 	console.log('sanity');
+	initializeGame();
 })
-
 //event listener for button on click
+
+//let mediaElem = document.getElementById("my-media-element");
+//mediaElem.load();
 document.getElementById('deal-cards').addEventListener('click', function(e) {
 	console.log('we are in game mode now');
 	startGame();
 })
 
-document.getElementById('restart-game').addEventListener('click', function(e) {
-	console.log('restarting');
-	continueGame();
-})
+//document.getElementById('restart-game').addEventListener('click', function(e) {
+	//console.log('restarting');
+	//continueGame();
+//})
 
-//add event listener to keydown "z" and keydown "m"
-let playerZKey = window.addEventListener('keydown', checkKeyZ, false);
-
+//add event listener to keydown "z" or "m"
+document.addEventListener('keydown', checkKeyZ);
+// document.addEventListener('keydown', checkForRoundWinner);
 
 //add event listener to keydown "m"
-let playerMKey = window.addEventListener('keydown', checkKeyM, false);
-
+document.addEventListener('keydown', checkKeyM);
+// let playerMKey = window.addEventListener('keydown', checkKeyM, false);
+// document.addEventListener('keydown', winsRound);
+// document.addEventListener('keydown', checkForRoundWinner);
 
 
 /*--- functions ---*/
@@ -49,18 +57,23 @@ let playerMKey = window.addEventListener('keydown', checkKeyM, false);
 function checkKeyZ(key) {
 	if (key.keyCode == "90") {
 		playerMessage.textContent = 'Player Z has slapped the deck';
-		pauseGame();
+		playerZ++;
+		//pauseGame();
+		points('z');
+		console.log(points);
 	}
 }
 
 function checkKeyM(key) {
 	if (key.keyCode == "77") {
 		playerMessage.textContent = 'Player M has slapped the deck';
-		pauseGame();
-		
+		playerM++;
+		//pauseGame('m');
+		points('m');
+		console.log(points);
 	}
 }
-initializeGame();
+
 //set up game to begin
 function initializeGame() {
 	deck = new Deck();
@@ -74,31 +87,50 @@ function startGame() {
 	deck.printDeck();
 	console.log(deck.deal);
 	//setting an interval for every second for a new card to deal
-	interval = setInterval(dealCard, 500);
+	interval = setInterval(dealCard, 1000);
 	//message.textContent = 'Game has started';
 }
+//flip cards from back image to front face images
+function flipCard() {
 
+}
+//deal cards
 function dealCard() {
-	var card = deck.deal();
+	card = deck.deal();
 	//if there are no more cards in the array, game is over
 	if (card === undefined) {
 		endGame();
+		winGame();
 	}
 }
+//Who wins round
+function points(playerCode) {
+	// If ace, player gets point
+	if (card.value === 'A' && playerCode === 'z') {
+		playerZ++;
+		
+	}
 
-//pauseGame
-function pauseGame() {
-	//cancelling the interval until start game is reclicked
-	clearInterval(interval);
-	//message.textContent = 'Game is Paused Now';
-	console.log('game is paused');
+	if (card.value === 'A' && playerCode === 'm') {
+		playerM++;
+	}
+	//if it was any other card, player loses point
+		if (card.value !== 'A' && playerCode === 'z') {
+		playerM++;
+		playerZ--;
+		}
+
+		if (card.value !== 'A' && playerCode === 'm') {
+		playerZ++;
+		playerM--;
+		}
+		console.log(playerM);
+		console.log(playerZ);
 }
-
-//continueGame
-//set up a boolean to true or false if start game is equal to true, otherwise continue game
+//Now we can continueGame with a faster interval
 function continueGame() {
-	interval = setInterval(dealCard, 300);
-	dealCard;
+	interval = setInterval(dealCard, 500);
+	dealCard();
 	//message.textContent = 'Game has entered 2nd Round';
 }
 
@@ -106,26 +138,38 @@ function continueGame() {
 function endGame() {
 	clearInterval(interval);
 	console.log('reached the end of the game');
-	gameOver = true;
+	if (gameOver === true || card == undefined) {
+		return;
+	} 
 }	
 
-//resetGame
+//win game function
+function winGame() {
+	if (playerM > playerZ) {
+		document.body.style.backgroundColor = "black";
+		//document.h2.textContent = points + "WE HAVE A WINNER";
+	}	else if (playerZ > playerM) {
+			document.body.style.backgroundColor = "blue";
+			//document.h2.textContent = points + "wE HAVE A WINNER";
+		} else if (playerM === playerZ) {
+				document.body.style.backgroundColor = "yellow";
+				interval = setInterval(dealCard, 250);
+		}
+	console.log(winGame);
+	endGame();
+}
 
 
 
 
+	
+	
 
 
 
 
-
-
-
-
-
-
-
-
+//stretch goal: war mode function (simultaneous keystroke)
+//stretch goal would be to display player stats throughout rounds and odds for winning game
 //Card game start to finish
 	//2 players have access to game area at same time and throughout the game
 	//Deal button runs by click or space downkey
@@ -141,48 +185,4 @@ function endGame() {
 	//that player is identified as the winner
 	//execute end of game messages and reset game start
 	//a winner banner
-
-
-
-	
-
-//global event listeners
-	//deal game button when clicked or space key down
-	//z key at key down, pause game immediately
-	//m key at key down, pause game immediately
-	//what if simultaneous play? (draw stretch goal)
-
-//global arrays
-	//1st array with all the cards
-	//2nd array that begins at empty and adds throughout game
-	//3rd array for player z and their winnings
-	//4th array for player m and their winnings
-
-//situations for variables or functions:
-//deal
-
-//startGameStatus = (computer generates dealt cards at a set timed variable)
-
-//pauseGameStatus = no delay card draw stops.
-//should game have been paused? Yes, store data and add to player z or player m caddie. 
-//No, player loses round. cards remain in card stack
-
-//store data: cards started with minus cards left to draw. How many cards were dealt? how many cards still need to be dealt?
-//how many cards does player m have now? 
-//how many cards does player z have now?
-//are we at a win? yes or no
-//if yes, winnerBanner. if not, continueGameStatus
-
-//continueGameStatus = (computer is again generating dealt cards)
-//enter continueGameStatus && newRound === No winner yet
-//no cards left to deal && player caddie full === winner
-//no cards left to deal && player caddie empty === loser
-//gameOverStatus = reset cards to startGame Status with all the cards in one stack. No cards accounted for either player. 
-//Math goes back to uncalculated totals. 
-//Need the click or space key down to restart game. 
-
-	//stretch goal would be to display player stats throughout rounds and odds for winning game
-	//stretch goal would be to speed up the continuous deal throughout rounds
-	//stretch goal woud be to create a dual round if both players key down at the same time and how many cards would go into a side war situation
-
 
