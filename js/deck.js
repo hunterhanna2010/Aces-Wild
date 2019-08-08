@@ -101,7 +101,7 @@ class Deck {
                 //ex: currentImage.data-suit = 
 				//console.log(suit, value, images[i]);
                 this.deck.push(card(suit, value, images[i]));
-		        }
+				}
             }
         printDeck() {
 		if (this.deck.length == 0) {

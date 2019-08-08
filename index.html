@@ -11,15 +11,12 @@
 	<header>
 		<h1>aces wild</h1>
 		
-		<p>Aces Wild features two players, Player Z and Player M. The game starts and the cards flip continuously to create one stack of cards.
-			<br> Players watch for Aces. The first player to slap the stack with a keystroke of "Z" or "M" wins the round and 1 point. If a player slaps on a card that is not an Ace, that player loses the round and 1 point. Rounds continue until there are no more cards left to be dealt.</p>
+		<p>Aces Wild features two players, Player Z and Player M. The game starts with the cards showing continuously.
+			<br> Players watch for Aces. The first player to slap the stack with a keystroke of "Z" or "M" wins the round and the point. If a player slaps on a card that is not an Ace, that player loses the round and the points. Rounds continue until there are no more cards left to be dealt.</p>
 	
 	</header>
 	<main>
-		<section id="gameboard">
-			<span id ="points-z" class="player-Z">PLAYER Z:</span>
-			<span id="points-m" class="player-M">PLAYER M:</span>
-		</section>
+		
 		<button id="deal-cards" type="submit" 
 				place="deal">start game now!</button>
 		
@@ -27,8 +24,11 @@
 				<div class ="card-flip" id="card-area-container"></div>
 					<div class="deck" id="card-rendering">
 						<div class="back" id="back">
-							<img id="dealer-cards" class="back-image" src="./assets/Card-Back-03.png">
-						
+		
+							<section id="gameboard">
+									<span id ="points-z" class="player-Z">PLAYER Z:</span>
+									<span id="points-m" class="player-M">PLAYER M:</span>
+								</section>
 								<h2 id="player-message"></h2>
 				</div>
 					
@@ -47,7 +47,7 @@
 								<img class="hidden" id="clubs-ten" data-suit="club" data-value="10" src="./assets/Cards/Classic/c10.png">
 								<img class="hidden" id="clubs-j" data-suit="club" data-value="J" src="./assets/Cards/Classic/c11.png">
 								<img class="hidden" id="clubs-q" data-suit="club" data-value="Q" src="./assets/Cards/Classic/c12.png">
-								<img class="hidden" id="clubs-k" data-suit="club" data-value="K" src="./assets/Cards/Classic/c13.png"> -->
+								<img class="hidden" id="clubs-k" data-suit="club" data-value="K" src="./assets/Cards/Classic/c13.png">
 							</div>
 							<div class="cards diamonds" id="diamonds">
 								<img class="hidden" id="diamonds-ace" data-suit="diamond" data-values="A" src="./assets/Cards/Classic/d01.png">
@@ -62,7 +62,7 @@
 								<img class="hidden" id="diamonds-ten" data-suit="diamond" data-value="10" src="./assets/Cards/Classic/d10.png">
 								<img class="hidden" id="diamonds-j" data-suit="diamond" data-value="J" src="./assets/Cards/Classic/d11.png">
 								<img class="hidden" id="diamonds-q" data-suit="diamond" data-value="Q" src="./assets/Cards/Classic/d12.png">
-								<img class="hidden" id="diamonds-k" data-suit="diamond" data-value="K" src="./assets/Cards/Classic/d13.png"> -->
+								<img class="hidden" id="diamonds-k" data-suit="diamond" data-value="K" src="./assets/Cards/Classic/d13.png">
 							</div>
 							<div class="cards hearts" id="hearts">
 								<img class="hidden" id="hearts-ace" data-suit="heart" data-value="A" src="./assets/Cards/Classic/h01.png">
@@ -77,7 +77,7 @@
 								<img class="hidden" id="hearts-ten" data-suit="heart" data-value="10" src="./assets/Cards/Classic/h10.png">
 								<img class="hidden" id="hearts-j" data-suit="heart" data-value="J" src="./assets/Cards/Classic/h11.png">
 								<img class="hidden" id="hearts-q" data-suit="heart" data-value="Q" src="./assets/Cards/Classic/h12.png">
-								<img class="hidden" id="hearts-k" data-suit="heart" data-value="K" src="./assets/Cards/Classic/h13.png"> -->
+								<img class="hidden" id="hearts-k" data-suit="heart" data-value="K" src="./assets/Cards/Classic/h13.png">
 							</div>
 							<div class="cards spades" id="spades">
 								<img class="hidden" id="spades-ace" data-suit="spade" data-value="A" src="./assets/Cards/Classic/s01.png">
@@ -92,7 +92,7 @@
 								<img class="hidden" id="spades-ten" data-suit="spade" data-value="10" src="./assets/Cards/Classic/s10.png">
 								<img class="hidden" id="spades-j" data-suit="spade" data-value="J" src="./assets/Cards/Classic/s11.png">
 								<img class="hidden" id="spades-q" data-suit="spade" data-value="Q" src="./assets/Cards/Classic/s12.png">
-								<img class="hidden" id="spades-k" data-suit="spade" data-value="K" src="./assets/Cards/Classic/s12.png"> -->
+								<img class="hidden" id="spades-k" data-suit="spade" data-value="K" src="./assets/Cards/Classic/s12.png">
 							</div>
 						</div>
 					</div>
