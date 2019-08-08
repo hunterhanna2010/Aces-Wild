@@ -99,10 +99,34 @@ function startGame() {
 //deal cards
 function dealCard() {
 	const cardDivs = document.querySelectorAll('.cards');
-	//const img = document.createElement('img');
+	// let index = 0;
+	// //if one of the indexes and the cardDivs still have child nodes
+	// //continue to remove, otherwise break out of while loop
+	// 	while(index < 4 && cardDivs[index].hasChildNodes()) {
+	// 		cardDivs[index].removeChild(cardDivs[index].firstChild);
+	// 		//if the current divs index does not have child nodes, please add it to the index
+	// 		if (!cardDivs[index].hasChildNodes()) {
+	// 			index++;
+	// 		}
+			
+	// 	}
+	const img = document.createElement('img');
+	const cardPile = document.getElementById('card-pile');
 	card = deck.deal();
-	card.images.classList.remove('hidden');
-	card.images.style.height = '200px';
+	img.src = card.images.src;
+	img.style.height = '200px';
+	card.images.remove();
+	cardPile.appendChild(img);
+	// if (card.suit === 'club') {
+	// 	cardDivs[0].appendChild(img);
+	// } else if (card.suit === 'diamond') {
+	// 	cardDivs[1].appendChild(img);
+	// } else if (card.suit === 'heart') {
+	// 	cardDivs[2].appendChild(img);
+	// } else {
+	// 	cardDivs[3].appendChild(img);
+	// }
+	//card.images.classList.remove('hidden');
 	//if there are no more cards in the array, game is over
 	if (card === undefined) {
 		winGame();
