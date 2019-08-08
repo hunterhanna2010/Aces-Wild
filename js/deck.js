@@ -64,12 +64,7 @@ class Deck {
         this.currentValue;
         this.currentImage;
 		//this.generateDeck = generateDeck;
-		
-			//let dealt_card = this.deck.shift();
-			//this.dealt_card.push(dealt_card);
-			//console.log(dealt_card);
-			//return dealt_card;
-			
+
 	}
 	
 	deal = () => {
@@ -79,15 +74,14 @@ class Deck {
         //push those item to the dealtCards array
         this.dealtCards.push(card)
         //return dealtCards
-        console.log(card);
         return card;
-	}
+	}   
 	generateDeck() {
 		
-		let card = (images) => {
-			
+		let card = (suit, value, images) => {
+        console.log(card);
 
-			//return {name:suit + 'of' + value, suit:suit, value:value, images:images};
+			return {name:suit + 'of' + value, suit:suit, value:value, images:images};
 		}
 
 		//let values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -98,28 +92,23 @@ class Deck {
             heartsTen, heartsJack, heartsQueen, heartsKing, clubsAce, clubsTwo, clubsThree, clubsFour, clubsFive, clubsSix,
             clubsSeven, clubsEight, clubsNine, clubsTen, clubsJack, clubsQueen, clubsKing, spadesAce, spadesTwo, spadesThree,
             spadesFour, spadesFive, spadesSix, spadesSeven, spadesEight, spadesNine, spadesTen, spadesJack, spadesQueen, spadesKing];
-
-
-
-		//for(let s = 0; s < suits.length; s++) {
-			//this.currentSuit = s;
-			//for(let v = 0; v < values.length; v++) {
-                //this.currentValue = v;
+        
                 for(let i = 0; i < images.length; i++) {
-                    this.currentImage = i;
-                
-				console.log(images[i]);
-				this.deck.push(card(images[i]));
-		}
-    }
-
-
-	printDeck() {
+                    //let suit = this.currentImage.dataset.suit;
+                    //let value = this.currentImage.dataset.value;
+                    let suit = images[i].getAttribute('data-suit');
+                    let value = images[i].getAttribute('data-value');
+                //ex: currentImage.data-suit = 
+				//console.log(suit, value, images[i]);
+                this.deck.push(card(suit, value, images[i]));
+		        }
+            }
+        printDeck() {
 		if (this.deck.length == 0) {
 			console.log('the deck has not been built');
 		} else {
 			for (let c = 0; c < this.deck.length; c++) {
-				//console.log(this.deck[c]);
+				console.log(this.deck[c]);
 			}
 		}
 	}

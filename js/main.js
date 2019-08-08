@@ -2,8 +2,6 @@
 
 
 /*--- constants ---*/
-const API_URL = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1';
-
 
 /*--- app's state ---*/
 let gameOver = false;
@@ -12,6 +10,10 @@ let card;
 let interval;
 let playerM = 0;
 let playerZ = 0;
+let score = 0;
+let scoreUpdateZ = document.getElementById('points-z');
+let scoreUpdateM = document.getElementById('points-m');
+
 
 /*--- cached element references ---*/
 let playerMessage = document.getElementById('player-message');
@@ -27,8 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 //event listener for button on click
 
-//let mediaElem = document.getElementById("my-media-element");
-//mediaElem.load();
+
 document.getElementById('deal-cards').addEventListener('click', function(e) {
 	console.log('we are in game mode now');
 	startGame();
@@ -52,14 +53,14 @@ document.addEventListener('keydown', checkKeyM);
 
 /*--- functions ---*/
 
-//startGame
 
 function checkKeyZ(key) {
 	if (key.keyCode == "90") {
 		playerMessage.textContent = 'Player Z has slapped the deck';
-		playerZ++;
 		//pauseGame();
 		points('z');
+		score;
+		scoreUpdateZ.innerText = 'Player Z:' + playerZ;
 		console.log(points);
 	}
 }
@@ -67,10 +68,12 @@ function checkKeyZ(key) {
 function checkKeyM(key) {
 	if (key.keyCode == "77") {
 		playerMessage.textContent = 'Player M has slapped the deck';
-		playerM++;
 		//pauseGame('m');
 		points('m');
+		score;
+		scoreUpdateM.textContent = 'Player M:' + playerM;
 		console.log(points);
+		
 	}
 }
 
@@ -88,19 +91,22 @@ function startGame() {
 	console.log(deck.deal);
 	//setting an interval for every second for a new card to deal
 	interval = setInterval(dealCard, 1000);
+	console.log('game has started');
 	//message.textContent = 'Game has started';
 }
-//flip cards from back image to front face images
-function flipCard() {
 
-}
+
 //deal cards
 function dealCard() {
+	const cardDivs = document.querySelectorAll('.cards');
+	//const img = document.createElement('img');
 	card = deck.deal();
+	card.images.classList.remove('hidden');
+	card.images.style.height = '200px';
 	//if there are no more cards in the array, game is over
 	if (card === undefined) {
-		endGame();
 		winGame();
+		endGame();
 	}
 }
 //Who wins round
@@ -108,56 +114,74 @@ function points(playerCode) {
 	// If ace, player gets point
 	if (card.value === 'A' && playerCode === 'z') {
 		playerZ++;
+		score++;
 		
 	}
 
 	if (card.value === 'A' && playerCode === 'm') {
 		playerM++;
+		score++;
 	}
 	//if it was any other card, player loses point
 		if (card.value !== 'A' && playerCode === 'z') {
 		playerM++;
 		playerZ--;
+		score++;
 		}
 
 		if (card.value !== 'A' && playerCode === 'm') {
 		playerZ++;
 		playerM--;
+		score++;
 		}
 		console.log(playerM);
 		console.log(playerZ);
 }
 //Now we can continueGame with a faster interval
-function continueGame() {
-	interval = setInterval(dealCard, 500);
-	dealCard();
+//function continueGame() {
+	//interval = setInterval(dealCard, 700);
+	//dealCard();
 	//message.textContent = 'Game has entered 2nd Round';
-}
+//}
 
 //endGame
 function endGame() {
 	clearInterval(interval);
 	console.log('reached the end of the game');
 	if (gameOver === true || card == undefined) {
-		return;
+		//no more cards to deal
 	} 
 }	
 
 //win game function
 function winGame() {
 	if (playerM > playerZ) {
-		document.body.style.backgroundColor = "black";
-		//document.h2.textContent = points + "WE HAVE A WINNER";
+		document.body.style.backgroundColor = "navy";
+		playerMessage.textContent = "PLAYER M IS THE WINNER. PLAY AGAIN?";
 	}	else if (playerZ > playerM) {
-			document.body.style.backgroundColor = "blue";
-			//document.h2.textContent = points + "wE HAVE A WINNER";
+			document.body.style.backgroundColor = "chocolate";
+			playerMessage.textContent = "PLAYER Z IS THE WINNER? PLAY AGAIN?";
 		} else if (playerM === playerZ) {
 				document.body.style.backgroundColor = "yellow";
-				interval = setInterval(dealCard, 250);
+				playerMessage.textContent = "WE HAVE A TIE. RESET FOR ONE MORE GAME - LIGHTNING ROUNDS"
+
 		}
-	console.log(winGame);
+	//console.log(winGame);
 	endGame();
+	gameOver = true;
+	score = 0;
+	
 }
+//function resetGame() {
+	//if (gameOver === false && playerM === playerZ) {
+		//initializeGame();
+		//generateDeck();
+		//startGame();
+		//interval = setInterval(dealCard, 250);
+
+	//}
+//}
+	
 
 
 

@@ -11,86 +11,89 @@
 	<header>
 		<h1>aces wild</h1>
 		
-		<p>Aces Wild features two players, Player Z and Player M. The game starts and the cards flip continuously creating one stack of cards.
-			<br> Players watch for Aces. The first player to slap the stack with a keystroke of "Z" or "M" wins the round and all the cards. If a player slaps on a card that is not an Ace, that player loses the round and all the cards go to the other player. Rounds continue until one of the players holds all of the cards.<br> Then, we have a game winner!</p>
+		<p>Aces Wild features two players, Player Z and Player M. The game starts and the cards flip continuously to create one stack of cards.
+			<br> Players watch for Aces. The first player to slap the stack with a keystroke of "Z" or "M" wins the round and 1 point. If a player slaps on a card that is not an Ace, that player loses the round and 1 point. Rounds continue until there are no more cards left to be dealt.</p>
 	
 	</header>
 	<main>
-		<div class ="card-flip" id="card-area-container"></div>
-			<div class="deck" id="card-rendering">
-				
-				<button id="deal-cards" type="submit" 
+		<section id="gameboard">
+			<span id ="points-z" class="player-Z">PLAYER Z:</span>
+			<span id="points-m" class="player-M">PLAYER M:</span>
+		</section>
+		<button id="deal-cards" type="submit" 
 				place="deal">start game now!</button>
-					
-					<div class="back" id="back">
-						<img id="dealer-cards" src="./assets/Card-Back-03.png">
+		
+		
+				<div class ="card-flip" id="card-area-container"></div>
+					<div class="deck" id="card-rendering">
+						<div class="back" id="back">
+							<img id="dealer-cards" class="back-image" src="./assets/Card-Back-03.png">
 						
-						<h2 id="player-message"></h2>
-					</div>
+								<h2 id="player-message"></h2>
+				</div>
 					
-					<div class="front" id="front">
-						<div class="clubs" id="clubs">
-							<img id="clubs-ace" src="./assets/Cards/Classic/c01.png">
-							<img id="clubs-two" src="./assets/Cards/Classic/c02.png">
-							<img id="clubs-three" src="./assets/Cards/Classic/c03.png">
-							<img id="clubs-four" src="./assets/Cards/Classic/c04.png">
-							<img id="clubs-five" src="./assets/Cards/Classic/c05.png">
-							<img id="clubs-six" src="./assets/Cards/Classic/c06.png">
-							<img id="clubs-seven" src="./assets/Cards/Classic/c07.png">
-							<img id="clubs-eight" src="./assets/Cards/Classic/c08.png">
-							<img id="clubs-nine" src="./assets/Cards/Classic/c09.png">
-							<img id="clubs-ten" src="./assets/Cards/Classic/c10.png">
-							<img id="clubs-j" src="./assets/Cards/Classic/c11.png">
-							<img id="clubs-q" src="./assets/Cards/Classic/c12.png">
-							<img id="clubs-k" src="./assets/Cards/Classic/c13.png">
+						<div class="front" id="front">
+							<div class="cards clubs" id="clubs">
+								<img class="hidden" id="clubs-ace" data-suit="club" data-value="A" src="./assets/Cards/Classic/c01.png">
+								<img class="hidden" id="clubs-two" data-suit="club" data-value="2" src="./assets/Cards/Classic/c02.png">
+								<img class="hidden" id="clubs-three" data-suit="club" data-value="3" src="./assets/Cards/Classic/c03.png">
+								<img class="hidden" id="clubs-four" data-suit="club" data-value="4" src="./assets/Cards/Classic/c04.png">
+								<img class="hidden" id="clubs-five" data-suit="club" data-value="5" src="./assets/Cards/Classic/c05.png">
+								<img class="hidden" id="clubs-six" data-suit="club" data-value="6" src="./assets/Cards/Classic/c06.png">
+								<img class="hidden" id="clubs-seven" data-suit="club" data-value="7" src="./assets/Cards/Classic/c07.png">
+								<img class="hidden" id="clubs-eight" data-suit="club" data-value="8" src="./assets/Cards/Classic/c08.png">
+								<img class="hidden" id="clubs-nine" data-suit="club" data-value="9" src="./assets/Cards/Classic/c09.png">
+								<img class="hidden" id="clubs-ten" data-suit="club" data-value="10" src="./assets/Cards/Classic/c10.png">
+								<img class="hidden" id="clubs-j" data-suit="club" data-value="J" src="./assets/Cards/Classic/c11.png">
+								<img class="hidden" id="clubs-q" data-suit="club" data-value="Q" src="./assets/Cards/Classic/c12.png">
+								<img class="hidden" id="clubs-k" data-suit="club" data-value="K" src="./assets/Cards/Classic/c13.png"> -->
+							</div>
+							<div class="cards diamonds" id="diamonds">
+								<img class="hidden" id="diamonds-ace" data-suit="diamond" data-values="A" src="./assets/Cards/Classic/d01.png">
+								<img class="hidden" id="diamonds-two" data-suit="diamond" data-value="2" src="./assets//Cards/Classic/d02.png">
+								<img class="hidden" id="diamonds-three" data-suit="diamond" data-value="3" src="./assets/Cards/Classic/d03.png">
+								<img class="hidden" id="diamonds-four" data-suit="diamond" data-value="4" src="./assets/Cards/Classic/d04.png">
+								<img class="hidden" id="diamonds-five" data-suit="diamond" data-value="5" src="./assets/Cards/Classic/d05.png">
+								<img class="hidden" id="diamonds-six" data-suit="diamond" data-value="6" src="./assets/Cards/Classic/d06.png">
+								<img class="hidden" id="diamonds-seven" data-suit="diamond" data-value="7" src="./assets/Cards/Classic/d07.png">
+								<img class="hidden" id="diamonds-eight" data-suit="diamond" data-value="8" src="./assets/Cards/Classic/d08.png">
+								<img class="hidden" id="diamonds-nine" data-suit="diamond" data-value="9" src="./assets/Cards/Classic/d09.png">
+								<img class="hidden" id="diamonds-ten" data-suit="diamond" data-value="10" src="./assets/Cards/Classic/d10.png">
+								<img class="hidden" id="diamonds-j" data-suit="diamond" data-value="J" src="./assets/Cards/Classic/d11.png">
+								<img class="hidden" id="diamonds-q" data-suit="diamond" data-value="Q" src="./assets/Cards/Classic/d12.png">
+								<img class="hidden" id="diamonds-k" data-suit="diamond" data-value="K" src="./assets/Cards/Classic/d13.png"> -->
+							</div>
+							<div class="cards hearts" id="hearts">
+								<img class="hidden" id="hearts-ace" data-suit="heart" data-value="A" src="./assets/Cards/Classic/h01.png">
+								<img class="hidden" id="hearts-two" data-suit="heart" data-value="2" src="./assets/Cards/Classic/h02.png">
+								<img class="hidden" id="hearts-three" data-suit="heart" data-value="3" src="./assets/Cards/Classic/h03.png">
+								<img class="hidden" id="hearts-four" data-suit="heart" data-value="4" src="./assets/Cards/Classic/h04.png">
+								<img class="hidden" id="hearts-five" data-suit="heart" data-value="5" src="./assets/Cards/Classic/h05.png">
+								<img class="hidden" id="hearts-six" data-suit="heart" data-value="6" src="./assets/Cards/Classic/h06.png">
+								<img class="hidden" id="hearts-seven" data-suit="heart" data-value="7" src="./assets/Cards/Classic/h07.png">
+								<img class="hidden" id="hearts-eight" data-suit="heart" data-value="8" src="./assets/Cards/Classic/h08.png">
+								<img class="hidden" id="hearts-nine" data-suit="heart" data-value="9" src="./assets/Cards/Classic/h09.png">
+								<img class="hidden" id="hearts-ten" data-suit="heart" data-value="10" src="./assets/Cards/Classic/h10.png">
+								<img class="hidden" id="hearts-j" data-suit="heart" data-value="J" src="./assets/Cards/Classic/h11.png">
+								<img class="hidden" id="hearts-q" data-suit="heart" data-value="Q" src="./assets/Cards/Classic/h12.png">
+								<img class="hidden" id="hearts-k" data-suit="heart" data-value="K" src="./assets/Cards/Classic/h13.png"> -->
+							</div>
+							<div class="cards spades" id="spades">
+								<img class="hidden" id="spades-ace" data-suit="spade" data-value="A" src="./assets/Cards/Classic/s01.png">
+								<img class="hidden" id="spades-two" data-suit="spade" data-value="2" src="./assets/Cards/Classic/s02.png">
+								<img class="hidden" id="spades-three" data-suit="spade" data-value="3" src="./assets/Cards/Classic/s03.png">
+								<img class="hidden" id="spades-four" data-suit="spade" data-value="4" src="./assets/Cards/Classic/s04.png">
+								<img class="hidden" id="spades-five" data-suit="spade" data-value="5" src="./assets/Cards/Classic/s05.png">
+								<img class="hidden" id="spades-six" data-suit="spade" data-value="6" src="./assets/Cards/Classic/s06.png">
+								<img class="hidden" id="spades-seven" data-suit="spade" data-value="7" src="./assets/Cards/Classic/s07.png">
+								<img class="hidden" id="spades-eight" data-suit="spade" data-value="8" src="./assets/Cards/Classic/s08.png">
+								<img class="hidden" id="spades-nine" data-suit="spade" data-value="9" src="./assets/Cards/Classic/s09.png">
+								<img class="hidden" id="spades-ten" data-suit="spade" data-value="10" src="./assets/Cards/Classic/s10.png">
+								<img class="hidden" id="spades-j" data-suit="spade" data-value="J" src="./assets/Cards/Classic/s11.png">
+								<img class="hidden" id="spades-q" data-suit="spade" data-value="Q" src="./assets/Cards/Classic/s12.png">
+								<img class="hidden" id="spades-k" data-suit="spade" data-value="K" src="./assets/Cards/Classic/s12.png"> -->
+							</div>
 						</div>
-						<div class="diamonds" id="diamonds">
-							<img id="diamonds-ace" src="./assets/Cards/Classic/d01.png">
-							<img id="diamonds-two" src="./assets//Cards/Classic/d02.png">
-							<img id="diamonds-three" src="./assets/Cards/Classic/d03.png">
-							<img id="diamonds-four" src="./assets/Cards/Classic/d04.png">
-							<img id="diamonds-five" src="./assets/Cards/Classic/d05.png">
-							<img id="diamonds-six" src="./assets/Cards/Classic/d06.png">
-							<img id="diamonds-seven" src="./assets/Cards/Classic/d07.png">
-							<img id="diamonds-eight" src="./assets/Cards/Classic/d08.png">
-							<img id="diamonds-nine" src="./assets/Cards/Classic/d09.png">
-							<img id="diamonds-ten" src="./assets/Cards/Classic/d10.png">
-							<img id="diamonds-j" src="./assets/Cards/Classic/d11.png">
-							<img id="diamonds-q" src="./assets/Cards/Classic/d12.png">
-							<img id="diamonds-k" src="./assets/Cards/Classic/d13.png">
-						</div>
-						<div class="hearts" id="hearts">
-							<img id="hearts-ace" src="./assets/Cards/Classic/h01.png">
-							<img id="hearts-two" src="./assets/Cards/Classic/h02.png">
-							<img id="hearts-three" src="./assets/Cards/Classic/h03.png">
-							<img id="hearts-four" src="./assets/Cards/Classic/h04.png">
-							<img id="hearts-five" src="./assets/Cards/Classic/h05.png">
-							<img id="hearts-six" src="./assets/Cards/Classic/h06.png">
-							<img id="hearts-seven" src="./assets/Cards/Classic/h07.png">
-							<img id="hearts-eight" src="./assets/Cards/Classic/h08.png">
-							<img id="hearts-nine" src="./assets/Cards/Classic/h09.png">
-							<img id="hearts-ten" src="./assets/Cards/Classic/h10.png">
-							<img id="hearts-j" src="./assets/Cards/Classic/h11.png">
-							<img id="hearts-q" src="./assets/Cards/Classic/h12.png">
-							<img id="hearts-k" src="./assets/Cards/Classic/h13.png">
-						</div>
-						<div class="spades" id="spades">
-							<img id="spades-ace" src="./assets/Cards/Classic/s01.png">
-							<img id="spades-two" src="./assets/Cards/Classic/s02.png">
-							<img id="spades-three" src="./assets/Cards/Classic/s03.png">
-							<img id="spades-four" src="./assets/Cards/Classic/s04.png">
-							<img id="spades-five" src="./assets/Cards/Classic/s05.png">
-							<img id="spades-six" src="./assets/Cards/Classic/s06.png">
-							<img id="spades-seven" src="./assets/Cards/Classic/s07.png">
-							<img id="spades-eight" src="./assets/Cards/Classic/s08.png">
-							<img id="spades-nine" src="./assets/Cards/Classic/s09.png">
-							<img id="spades-ten" src="./assets/Cards/Classic/s10.png">
-							<img id="spades-j" src="./assets/Cards/Classic/s11.png">
-							<img id="spades-q" src="./assets/Cards/Classic/s12.png">
-							<img id="spades-k" src="./assets/Cards/Classic/s12.png">
-						</div>
-					</div>
-					
 					</div>
 			</div>
 	</main>
